@@ -1,6 +1,6 @@
 name: sizer_plus
 description: "Flutter Sizer library for relative size layouts"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/guilhermetog/sizer_plus
 
 environment:

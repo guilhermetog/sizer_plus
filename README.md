@@ -8,11 +8,11 @@ You can define child Widgets sizes based on their parents, starting from page<br
 - [SIZER PLUS](#sizer-plus)
   - [Defining](#defining)
   - [Relative Size](#relative-size)
+  - [Min and Max](#min-and-max)
 - [Contribute](#contribute)
 
 
 
-<a name="sizer"></a>
 
 ## Defining
 
@@ -39,7 +39,6 @@ class Screen extends StatelessWidget {
 
 ```
 
-<a name="plug-data"></a>
 
 ## Relative Size
 You can passa the size to use inside another Widget, throught fraction method
@@ -103,6 +102,41 @@ class Button extends StatelessWidget {
   }
 
 ```
+
+
+## Min and Max
+Some times we need to decided some sizes based on differents screen ratios. 
+For example if we have to display a sequence of squared boxes.
+In these cases we can count on min and max methods
+
+It acts like a decision maker in real time. 
+It calculates the desired height or width. 
+Compare both, and returns the greater or lower depends on what method you are using.
+
+The min method returns e lowest value between the calculated heigth or width
+
+```dart
+
+  ...
+  Container(
+    height: size.min(30, 10), // 30% of height or 10% of width
+    width: size.min(30, 10), // returns the lower
+  )
+
+```
+
+The min method returns e lowest value between the calculated heigth or width
+
+```dart
+
+  ...
+  Container(
+    height: size.max(30, 10), // 30% of height or 10% of width
+    width: size.max(30, 10), // returns the greater
+  )
+
+```
+
 
 
 <br/><br/>

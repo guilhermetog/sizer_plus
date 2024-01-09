@@ -42,6 +42,18 @@ class Sizer {
     return width * (percentage / 100);
   }
 
+  double min(double percentageHeight, double percentageWidth) {
+    double h = height(percentageHeight);
+    double w = width(percentageWidth);
+    return h < w ? h : w;
+  }
+
+  double max(double percentageHeight, double percentageWidth) {
+    double h = height(percentageHeight);
+    double w = width(percentageWidth);
+    return h > w ? h : w;
+  }
+
   double screenHeight(double percentage) {
     return (_safeHeight + paddingTop + paddingBottom) * (percentage / 100);
   }
