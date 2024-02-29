@@ -9,6 +9,7 @@ You can define child Widgets sizes based on their parents, starting from page<br
   - [Defining](#defining)
   - [Relative Size](#relative-size)
   - [Min and Max](#min-and-max)
+  - [Orientation](#orientation)
 - [Contribute](#contribute)
 
 
@@ -137,6 +138,26 @@ The min method returns e lowest value between the calculated heigth or width
 
 ```
 
+
+
+## Orientation
+With orientation you can identify at runtime if the screen is portrait or landscape
+It's usefull to make breakpoint decisions.
+Mostly of the breakchanges in the layout has more to do with the orientation than the resolution.
+
+```dart
+
+  ...
+  if(size.orientation.isVertical)
+   Column(children:[
+      ...
+   ])
+  else
+    Row(children:[
+      ...
+    ])
+
+```
 
 
 <br/><br/>

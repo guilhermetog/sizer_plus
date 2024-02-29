@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'media_query_size.dart';
 
 typedef SizerFractionBuilder = Widget Function(Sizer);
+
+enum SizerOrientation {
+  vertical,
+  horizontal;
+
+  bool get isVertical => this == vertical;
+  bool get isHorizontal => this == horizontal;
+}
 
 class Sizer {
   static double _safeHeight = 0;
@@ -14,18 +21,20 @@ class Sizer {
 
   double get paddingTop => _paddingTop;
   double get paddingBottom => _paddingBottom;
+  SizerOrientation get orientation => _safeHeight >= _safeWidth
+      ? SizerOrientation.vertical
+      : SizerOrientation.horizontal;
   bool get isEmpty => _height == null && _width == null;
 
   const Sizer(this._height, this._width);
 
   factory Sizer.of(BuildContext context) {
-    Sizer sizer = const Sizer(null, null);
-    sizer.calculateSizes(context);
-    return sizer;
+    calculateSize(context);
+    return const Sizer(null, null);
   }
 
-  calculateSizes(BuildContext context) {
-    MediaQuerySize media = MediaQuerySize(context);
+  static calculateSize(BuildContext context) {
+    MediaQueryData media = MediaQuery.of(context);
     _safeHeight = media.size.height - media.padding.top - media.padding.bottom;
     _safeWidth = media.size.width;
     _paddingTop = media.padding.top;
