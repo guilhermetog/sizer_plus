@@ -10,6 +10,7 @@ You can define child Widgets sizes based on their parents, starting from page<br
   - [Relative Size](#relative-size)
   - [Min and Max](#min-and-max)
   - [Orientation](#orientation)
+  - [FontSize](#fontsize)
 - [Contribute](#contribute)
 
 
@@ -158,6 +159,23 @@ Mostly of the breakchanges in the layout has more to do with the orientation tha
     ])
 
 ```
+
+
+## FontSize
+A size calculation based on the relation between the height and the width available.
+This is called fontSize because it was create to use in texts, where the text can overflow both vertically or horizontally.
+Using fontSize to calculate the size of the font can minimize the overflow problem, both for multiline texts, as for long lines.
+
+```dart
+
+  ...
+  Text(
+    "Text Example"
+    height: size.fontSize(3), // 3% of the parent width, ajusted acording to the ratio of the parent
+  )
+
+```
+
 
 
 <br/><br/>

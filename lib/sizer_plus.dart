@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 
 typedef SizerFractionBuilder = Widget Function(Sizer);
 
-enum SizerOrientation {
-  vertical,
-  horizontal;
-
-  bool get isVertical => this == vertical;
-  bool get isHorizontal => this == horizontal;
-}
-
 class Sizer {
   static double _safeHeight = 0;
   static double _safeWidth = 0;
@@ -21,16 +13,15 @@ class Sizer {
 
   double get paddingTop => _paddingTop;
   double get paddingBottom => _paddingBottom;
-  SizerOrientation get orientation => _safeHeight >= _safeWidth
-      ? SizerOrientation.vertical
-      : SizerOrientation.horizontal;
+  bool get isVertical => _safeHeight > _safeWidth;
   bool get isEmpty => _height == null && _width == null;
 
   const Sizer(this._height, this._width);
 
   factory Sizer.of(BuildContext context) {
     calculateSize(context);
-    return const Sizer(null, null);
+    Sizer sizer = Sizer(_safeHeight, _safeWidth);
+    return sizer;
   }
 
   static calculateSize(BuildContext context) {
@@ -49,6 +40,10 @@ class Sizer {
   double width(double percentage) {
     double width = _width ?? _safeWidth;
     return width * (percentage / 100);
+  }
+
+  double fontSize(double percentage) {
+    return width(percentage) / (width(30) / height(100));
   }
 
   double min(double percentageHeight, double percentageWidth) {
